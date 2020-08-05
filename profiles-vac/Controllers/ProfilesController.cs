@@ -19,10 +19,17 @@ namespace profiles_vac.Controllers
             _context = context;
         }
 
-        // GET: Profiles
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            return View(await _context.Profile.ToListAsync());
+            var profile = from m in _context.Profile
+                          select m;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                profile = profile.Where(s => s.Name.Contains(searchString) || s.PositionTitle.Contains(searchString) || s.Description.Contains(searchString)).Distinct();
+            }
+
+            return View(await profile.ToListAsync());
         }
 
         // GET: Profiles/Details/5

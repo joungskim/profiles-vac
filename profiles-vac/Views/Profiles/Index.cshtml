@@ -4,14 +4,26 @@
     ViewData["Title"] = "Index";
 }
 
+<link rel="stylesheet" href="~/css/Profiles.css" type="text/css" />
+
 <h1>Profiles</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+<form asp-controller="Profiles" asp-action="Index">
+    <p>
+        Search: <input type="text" name="SearchString">
+        <input class="btn btn-light" type="submit" value="Filter" />
+    </p>
+</form>
 <table class="table">
     <thead>
-        <tr>
+        <tr class="text-center">
+
+            <th>
+                @Html.DisplayNameFor(model => model.ProfileImageURL)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Name)
             </th>
@@ -25,47 +37,42 @@
                 @Html.DisplayNameFor(model => model.Description)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ProfileImageURL)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.StartDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EndDate)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
-        <tr>
+    @if (item.CurrentEmployee) { 
+        <tr class="text-center align-center">
             <td>
-                <img src=@item.ProfileImageURL />
+                <img src=@item.ProfileImageURL class="img-thumbnail img-resize rounded" />
             </td>
-            <td>
+            <td class="align-middle">
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
-            <td>
+            <td class="align-middle">
                 @Html.DisplayFor(modelItem => item.CurrentEmployee)
             </td>
-            <td>
+            <td class="align-middle">
                 @Html.DisplayFor(modelItem => item.PositionTitle)
             </td>
-            <td>
+            <td class="align-middle">
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
-            <td>
+            <td class="align-middle">
                 @Html.DisplayFor(modelItem => item.StartDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.EndDate)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a class="btn btn-light" asp-action="Edit" asp-route-id="@item.Id"> Edit </a>
+                <br />
+                <a class="btn btn-light" asp-action="Details" asp-route-id="@item.Id">Details</a> 
+                <br />
+                <a class="btn btn-light" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>
+    }
 }
     </tbody>
 </table>

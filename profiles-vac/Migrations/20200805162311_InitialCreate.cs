@@ -19,7 +19,7 @@ namespace profiles_vac.Migrations
                     Description = table.Column<string>(nullable: true),
                     ProfileImageURL = table.Column<string>(nullable: true),
                     StartDate = table.Column<DateTime>(nullable: false),
-                    EndDate = table.Column<DateTime>(nullable: false)
+                    EndDate = table.Column<DateTime>(nullable: true)
                 },
                 constraints: table =>
                 {
