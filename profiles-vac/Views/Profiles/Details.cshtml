@@ -35,7 +35,7 @@
             @Html.DisplayFor(model => model.Description)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ProfileImageURL)
+            <img class="img-thumbnail" src=@Model.ProfileImageURL />
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.ProfileImageURL)
@@ -45,12 +45,6 @@
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.StartDate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.EndDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.EndDate)
         </dd>
     </dl>
 </div>
